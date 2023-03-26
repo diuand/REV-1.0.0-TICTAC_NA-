@@ -1,0 +1,175 @@
+
+/* settings */
+*, *::after,*::before{
+    box-sizing: border-box;
+}
+
+:root{
+    --cell_size: 100px;
+    --mark_size: calc(var(--cell_size)* 0.9);
+}
+
+/* define the board */
+body{
+    margin:0;
+    background-color:  rgb(219, 241, 186);
+}
+.board{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+}
+
+
+
+/* define the cell */
+.cell{
+    width: var(--cell_size);
+    height: var(--cell_size);
+    border: 1px solid rgb(117, 131, 97);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* remove the top border of the board */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: none;
+}
+
+/* remove the left border of the board */
+.cell:nth-child(3n+1){
+    border-left: none;
+}
+
+/* remove the right border of the board */
+.cell:nth-child(3n){
+    border-right: none;
+}
+
+/* remove the bottom border of the board */
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+    border-bottom: none;
+}
+
+/* if the symbol already exist change cursor */
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+/* x hover color */
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after{
+    background-color: rgb(161, 180, 132);
+}
+
+/* set the x symbol */
+.cell.x::before,
+.cell.x::after{
+    background-color: black;
+}
+
+/* define x */
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after{
+    content: '';
+    position: absolute;
+    width: calc(var(--mark_size) * .15);
+    height: var(--mark_size);
+}
+
+/* making the shape of x symbol */
+.cell.x::before,
+.cell:not(.x):not(.o):hover::before{
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.cell:not(.x):not(.o):hover::after{
+    transform: rotate(-45deg);
+}
+
+/* o hover color */
+.board.o .cell:not(.x):not(.o):hover::before{
+    background-color: rgb(161, 180, 132);
+}
+
+/* set the o symbol */
+.cell.o::before{
+    background-color: black;
+}
+
+/* define o */
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+/* making the shape of o symbol */
+.board.o .cell:not(.x):not(.o):hover::before,
+.cell.o::before{
+    width: var(--mark_size) ;
+    height: var(--mark_size);
+}
+
+.board.o .cell:not(.x):not(.o):hover::after,
+.cell.o::after{
+    width: calc(var(--mark_size) * .73);
+    height: calc(var(--mark_size) * .73);
+    background-color:  rgb(219, 241, 186);
+}
+
+/* win setings */
+.win_message {
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(59, 66, 50);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: rgb(217, 255, 160);
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+/* button style */
+.win_message button{
+    font-size: 3rem;
+    background-color: rgb(217, 255, 160); 
+    border: 1px solid black;
+    padding: 0.1em 0.25em;
+    color: rgb(59, 66, 50);
+    
+}
+
+/* button hover style */
+.win_message button:hover{
+    background-color: rgb(234, 255, 198) ;
+    cursor: pointer;
+    border: 1px solid  rgb(89, 99, 74);
+    color: black;
+}
+
+/* showing the message if class win_mssage contains show */
+.win_message.show{
+    display: flex;
+}
