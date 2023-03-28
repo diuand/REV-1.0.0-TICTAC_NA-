@@ -1,6 +1,6 @@
 
 # Tic Tac Toe / REV-1.0.0-TICTAC_NA
-A Responsive Tic-Tac-Toe Game maade in javascript
+A Responsive Tic-Tac-Toe Game made in javascript
 ## Demo
  -  [Live link](https://diuand.github.io/Tic-Tac-Toe/)
 
